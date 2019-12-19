@@ -1,0 +1,16 @@
+{
+	"name": "sourceTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gcdtesttableConnection",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "rkst17source"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

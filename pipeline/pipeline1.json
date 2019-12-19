@@ -1,0 +1,141 @@
+{
+	"name": "pipeline1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureTableSource",
+						"azureTableSourceIgnoreTableNotFound": false
+					},
+					"sink": {
+						"type": "CosmosDbMongoDbApiSink",
+						"writeBatchTimeout": "00:30:00",
+						"writeBehavior": "upsert"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "PartitionKey",
+									"type": "String"
+								},
+								"sink": {
+									"name": "source"
+								}
+							},
+							{
+								"source": {
+									"name": "RowKey",
+									"type": "String"
+								},
+								"sink": {
+									"name": "_id"
+								}
+							},
+							{
+								"source": {
+									"name": "VESSEL",
+									"type": "String"
+								},
+								"sink": {
+									"name": "vesselCode"
+								}
+							},
+							{
+								"source": {
+									"name": "VESNAM",
+									"type": "String"
+								},
+								"sink": {
+									"name": "vesselName"
+								}
+							},
+							{
+								"source": {
+									"name": "VESTYP",
+									"type": "String"
+								},
+								"sink": {
+									"name": "vesselType"
+								}
+							},
+							{
+								"source": {
+									"name": "LLOYDSCD",
+									"type": "String"
+								},
+								"sink": {
+									"name": "imoCode"
+								}
+							},
+							{
+								"source": {
+									"name": "COMMAND1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "commandType"
+								}
+							},
+							{
+								"source": {
+									"name": "CALLSIGN",
+									"type": "String"
+								},
+								"sink": {
+									"name": "vslCallSign"
+								}
+							},
+							{
+								"source": {
+									"name": "IFLRCODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "iflrcode"
+								}
+							},
+							{
+								"source": {
+									"name": "IFLRTEXT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "iflrtext"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "sourceTable",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "CosmosDbMongoDbApiCollection1",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

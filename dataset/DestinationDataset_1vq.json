@@ -1,0 +1,15 @@
+{
+	"name": "DestinationDataset_1vq",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "CosmosDbMongoDbApi3",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "CosmosDbMongoDbApiCollection",
+		"typeProperties": {
+			"collection": "portcall_out"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
